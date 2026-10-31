@@ -1,0 +1,54 @@
+NMOS 1:1 current mirror: actual simulation report
+
+PDK: /foss/pdks/ihp-sg13g2
+PDK commit: a49358cc0b20635fcb53c0940505e3563763fc7a
+Simulator: ngspice-47. Corner: mos_tt. Temperature: 27 C.
+Both transistors: sg13_lv_nmos, W=2u L=1u ng=1 m=1 mm_ok=0.
+Pin order: D G S B. M1 D=G=gate; M2 D=out, G=gate.
+Both sources and bulk terminals grounded. Iref flows from ground to gate.
+Output current is defined as -i(Vout), positive into M2 drain.
+Sweep: 0 to 1.2 V inclusive, 0.001 V steps, 1201 points.
+
+Installed PDK evidence:
+libs.tech/ngspice/models/sg13g2_moslv_mod.lib:
+  .subckt sg13_lv_nmos d g s b
+libs.tech/xschem/sg13g2_pr/sg13_lv_nmos.sym:
+  pin order D G S B; spiceprefix=X (subcircuit instance).
+libs.tech/ngspice/models/cornerMOSlv.lib:
+  Maximum drain-source voltage: 1.5 V.
+  Model geometry range L=0.13..10 um, W=0.15..10 um.
+  mos_tt includes sg13g2_moslv_mod.lib.
+libs.tech/xschem/sg13g2_tests/dc_lv_nmos.sch:
+  Official example uses .lib cornerMOSlv.lib mos_tt and 0..1.2 V sweep.
+libs.tech/ngspice/.spiceinit:
+  PDK sourcepath and PSP103 OSDI loading example.
+Project .spiceinit loads psp103.osdi (psp103va) and psp103_nqs.osdi.
+The stated 1.5 V limit is the model file's VDS rating; no additional
+gate-voltage reliability rating is inferred. Actual VGS is 0.419000224 V,
+and maximum applied VDS is 1.2 V.
+
+At Vout=0.6 V:
+  Iout=10.63802570687097 uA
+  Iref=10 uA
+  signed difference=+0.63802570687097 uA
+  signed relative error=100*(Iout-Iref)/Iref=+6.380257068709705 percent
+  Vgate=0.419000224372749 V
+Xschem-generated netlist gives the same current.
+Maximum absolute current difference over all 1201 exported points: 0 A.
+This is a nominal DC result; no mismatch or Monte Carlo is enabled.
+Equal dimensions establish a nominal 1:1 mirror; finite transistor output
+conductance and unequal drain voltages allow current to vary with Vout.
+
+Reproduce inside the existing container using a login shell:
+  cd /foss/designs/first_ic/current_mirror
+  ngspice -b mirror_direct.cir
+  xschem -b -n -q -x --rcfile /foss/pdks/ihp-sg13g2/libs.tech/xschem/xschemrc -o /foss/designs/first_ic/current_mirror current_mirror.sch
+  ngspice -b current_mirror.spice
+  python3 analyze.py
+
+Files: direct.csv and xschem.csv have columns Vout_V,Iout_A,Vgate_V,error_percent.
+current_mirror.png overlays both results; results.json stores measurements.
+The .raw files and .log files retain simulation evidence. The multiplier
+warning is issued by the PDK subcircuit's m parameter; both instances use m=1.
+The initial target folder did not exist. No pre-existing design files,
+global configuration, installed PDK, or container configuration were modified.

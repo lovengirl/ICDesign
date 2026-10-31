@@ -1,0 +1,53 @@
+{
+  "conditions": {
+    "W_um_each": 2,
+    "L_um_each": 1,
+    "Iref_uA": 10,
+    "corner": "mos_tt",
+    "temperature_C": 27,
+    "sweep_step_V": 0.001
+  },
+  "original_validated": true,
+  "at_0p6V": {
+    "I_1to1_uA": 10.63802570687097,
+    "I_1to2_uA": 21.27604716380207,
+    "error_1to1_percent": 6.380257068709705,
+    "error_1to2_percent": 6.380235819010349,
+    "ratio_1to2_over_1to1": 1.9999996004954315
+  },
+  "within_5percent_sampled_V": {
+    "1to1": [
+      [
+        0.297,
+        0.558
+      ]
+    ],
+    "1to2": [
+      [
+        0.297,
+        0.558
+      ]
+    ]
+  },
+  "xschem_max_abs_difference_A": 0.0,
+  "original_hashes_before": {
+    ".spiceinit": "d80086d06794940ad8e54f3f3645ffec386054370ec3c72f9edc0540be32185e",
+    "analyze.py": "2a5654d394e7d3b49cd1b6e56120822dbe1a43319f5e137cdc3b1fc7a0455c7c",
+    "current_mirror.png": "95eed8096859492d0a4833db927718c0dff11d0e338b9cf20f401bb14a7edeb6",
+    "current_mirror.sch": "f9de04cf364c538636db8f643d9e3c4b539e4973873d15181da6f0f09d20e77b",
+    "current_mirror.spice": "88174a7de8399df063c918e307e92bfbf46d68783734a59a46199557b744270b",
+    "direct.csv": "21a0089ab01b34b88f3717f13439dc2604e22a3d78cfd18624df8a91ef66ac1e",
+    "direct.dat": "31980f5813a9545a38240f2cfd9ab822886491ecfed2740154152a0154ec8ab3",
+    "direct.log": "ff157448b791a0cf289b84805fdb874b52a7071b6477bcb28050bc161e6dff36",
+    "direct.raw": "4b5d8049e31117b2e0dfed3c3857b878677f22b65bc200d80d8e4d1bdd32d1b4",
+    "mirror_direct.cir": "d9393092a6ef986c8453bfb94332a5d110c6f45442d75a54033c24c3ca618730",
+    "REPORT.txt": "f428d12a85f484a934850aacc2f99e2f6b2cecc3b9e6fde582b223c61b0b3717",
+    "results.json": "d921a4ecbb02de53eb215e855baed64255018cecd477fea76413bef431c188fa",
+    "xschem.csv": "21a0089ab01b34b88f3717f13439dc2604e22a3d78cfd18624df8a91ef66ac1e",
+    "xschem.dat": "31980f5813a9545a38240f2cfd9ab822886491ecfed2740154152a0154ec8ab3",
+    "xschem.raw": "f1ef0d1cf9cb1f1fdc354679454615d4f97536312176f654dd465644045c82b0",
+    "xschem_netlist.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "xschem_sim.log": "c14e2c9c56ce928bb22560b4e12a56ca29d7722d9b2d6674befffc7baa8bd7d0"
+  },
+  "original_files_unchanged": true
+}

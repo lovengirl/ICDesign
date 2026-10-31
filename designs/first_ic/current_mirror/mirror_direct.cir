@@ -1,0 +1,18 @@
+NMOS 1:1 current mirror - IHP SG13G2
+Iref 0 gate DC 10u
+Vout out 0 DC 0
+XM1 gate gate 0 0 sg13_lv_nmos w=2u l=1u ng=1 m=1 mm_ok=0
+XM2 out gate 0 0 sg13_lv_nmos w=2u l=1u ng=1 m=1 mm_ok=0
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.temp 27
+.control
+set wr_singlescale
+set wr_vecnames
+set numdgt=15
+dc Vout 0 1.2 0.001
+let iout = -i(Vout)
+wrdata direct.dat v(out) iout v(gate)
+write direct.raw
+quit
+.endc
+.end

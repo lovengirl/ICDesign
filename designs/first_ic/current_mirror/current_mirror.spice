@@ -1,0 +1,26 @@
+** sch_path: /foss/designs/first_ic/current_mirror/current_mirror.sch
+**.subckt current_mirror
+XM1 gate gate GND GND sg13_lv_nmos w=2u l=1u ng=1 m=1 mm_ok=0
+XM2 out gate GND GND sg13_lv_nmos w=2u l=1u ng=1 m=1 mm_ok=0
+Iref GND gate 10u
+Vout out GND 0
+**** begin user architecture code
+
+.lib /foss/pdks/ihp-sg13g2/libs.tech/ngspice/models/cornerMOSlv.lib mos_tt
+.temp 27
+.control
+set wr_singlescale
+set wr_vecnames
+set numdgt=15
+dc Vout 0 1.2 0.001
+let iout = -i(Vout)
+wrdata xschem.dat v(out) iout v(gate)
+write xschem.raw
+quit
+.endc
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
